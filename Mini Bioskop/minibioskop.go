@@ -17,27 +17,28 @@ func main() {
 		film3 string = "Gundam"
 		sc    int
 	)
-	nama := make([]string, 0) // nama pembeli
-	code := make([]int, 0)    // kode film
-	tiekt := make([]int, 0)   // jumlah tiket
-	total := make([]int, 0)   // total pembayaran
+	nama := make([]string, 0)     // nama pembeli
+	array_kode := make([]int, 0)  // kode film
+	array_tiket := make([]int, 0) // jumlah tiket
+	total := make([]int, 0)       // total pembayaran
 
 	for {
 
-		fmt.Println("BIOSKOP GOLANG")
-		fmt.Println("==============")
+		fmt.Print("\nMini Bioskop GOLANG")
+		fmt.Print(" Ver. 0.1\n")
+		fmt.Println("==========================")
 		fmt.Println("| Kode Film | Nama Film  |")
 		fmt.Println("| 1         |", film1, "  |")
 		fmt.Println("| 2         |", film2, "   |")
 		fmt.Println("| 3         |", film3, "    |")
 		fmt.Println()
 
-		fmt.Println("1. Buy")
-		fmt.Println("2. View")
-		fmt.Println("3. Update")
-		fmt.Println("4. Delete")
+		fmt.Println("1. Beli Tiket")
+		fmt.Println("2. Lihat Data")
+		fmt.Println("3. Update Data")
+		fmt.Println("4. Hapus Data")
 		fmt.Println("5. Exit")
-		fmt.Println("choose >> ")
+		fmt.Print("choose >> : ")
 
 		fmt.Scan(&sc)
 
@@ -48,31 +49,31 @@ func main() {
 				id      string
 				mail    string
 				kode    int
-				ticket  int
-				price   int
+				tiket   int
+				harga   int
 				bayar   int
 			)
 
 			for {
 				//ini tempat user input data diri
 				fmt.Println()
-				fmt.Println("Masukkan nama anda : ")
+				fmt.Print("Masukkan nama anda : ")
 				input.Scan()
 				id = input.Text()
-				fmt.Println("Masukkan kode film : ")
+				fmt.Print("Masukkan kode film : ")
 				fmt.Scan(&kode)
-				fmt.Println("Masukkan email anda : ")
+				fmt.Print("Masukkan email anda : ")
 				input.Scan()
 				mail = input.Text()
-				fmt.Println("Masukkan jumlah pembelian : ")
-				fmt.Scan(&ticket)
+				fmt.Print("Masukkan jumlah pembelian : ")
+				fmt.Scan(&tiket)
 				fmt.Println()
 				fmt.Println()
 
 				//validasi pembelian ke user. belom ditambahkan case jika summary salah
 				fmt.Println("\t Summary \t")
 				fmt.Println("==========================")
-				fmt.Println("Nama : ", id, "\nEmail : ", mail, "\nKode Film : ", kode, "\nJumlah Tiket : ", ticket)
+				fmt.Println("Nama : ", id, "\nEmail : ", mail, "\nKode Film : ", kode, "\nJumlah Tiket : ", tiket)
 
 				fmt.Print("Apakah inormasi di atas sudah benar? <y/n> ")
 				fmt.Scan(&recheck)
@@ -81,19 +82,22 @@ func main() {
 					break
 				}
 			}
+			nama = append(nama, id)
+			array_tiket = append(array_tiket, tiket)
+			array_kode = append(array_kode, kode)
 
 			if kode == 1 {
-				price = 25000
+				harga = 25000
 			} else if kode == 2 {
-				price = 36000
+				harga = 36000
 			} else {
-				price = 30000
+				harga = 30000
 			}
 
-			jumlah := price * ticket
+			jumlah := harga * tiket
 			fmt.Println("Jumlah pembayaran : ", jumlah)
 
-			fmt.Print("Masukkn nominal pembayaran : ")
+			fmt.Print("Masukan nominal pembayaran : ")
 			fmt.Scan(&bayar)
 			change := bayar - jumlah
 
@@ -105,14 +109,13 @@ func main() {
 
 				fmt.Println("Kembali: ", change)
 				fmt.Println("Selamat menikmati tayangannya!")
-
 			} else {
 				fmt.Println("Pembayaran anda tidak dapat di proses.")
 			}
 
 		case 2: //viewing data
 			if cap(nama) == 0 {
-				fmt.Println("There is no data!")
+				fmt.Println("Data TIDAK Ditemukan!")
 			} else {
 				fmt.Println("========================================================")
 				fmt.Println("| No. | Nama        | Kode Film | Jumlah    | Price    |")
@@ -120,21 +123,23 @@ func main() {
 			}
 
 			for i := 0; i < len(nama); i++ {
-				fmt.Printf("| %-4d| %-12s| %-10d| %-10d| %-9d|\n",
-					(i + 1), nama[i], code[i], tiekt[i], total[i])
+
+				fmt.Printf("| %-3d| %-10s| %-10d| %-7d| %-5d|\n",
+					(i + 1), nama[i], array_kode[i], array_tiket[i], total[i])
 			}
 
 		case 3: //editing data
 			if cap(nama) == 0 {
-				fmt.Println("There is no data!")
+				fmt.Println("Data TIDAK Ditemukan!")
 			} else {
 				fmt.Println("========================================================")
 				fmt.Println("| No. | Nama        | Kode Film | Jumlah    | Price    |")
 				fmt.Println("========================================================")
 			}
 			for i := 0; i < len(nama); i++ {
-				fmt.Printf("| %-4d| %-12s| %-10d| %-10d| %-9d|\n",
-					(i + 1), nama[i], code[i], tiekt[i], total[i])
+				fmt.Printf("| %-3d| %-10s| %-10d| %-7d| %-5d|\n",
+					(i + 1), nama[i], array_kode[i], array_tiket[i], total[i])
+
 			}
 
 		case 4: //deleting data
@@ -144,7 +149,7 @@ func main() {
 
 			for i := 0; i < len(nama); i++ {
 				fmt.Printf("| %-4d| %-12s| %-10d| %-10d| %-9d|\n",
-					(i + 1), nama[i], code[i], tiekt[i], total[i])
+					(i + 1), nama[i], array_kode[i], array_tiket[i], total[i])
 			}
 		}
 
