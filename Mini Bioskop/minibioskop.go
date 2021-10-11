@@ -17,10 +17,10 @@ func main() {
 		film3 string = "Gundam"
 		sc    int
 	)
-	nama := make([]string, 0) // nama pembeli
-	code := make([]int, 0)    // kode film
-	tiekt := make([]int, 0)   // jumlah tiket
-	total := make([]int, 0)   // total pembayaran
+	nama := make([]string, 0)     // nama pembeli
+	array_kode := make([]int, 0)  // kode film
+	array_tiket := make([]int, 0) // jumlah tiket
+	total := make([]int, 0)       // total pembayaran
 
 	for {
 
@@ -37,7 +37,7 @@ func main() {
 		fmt.Println("2. Lihat Data")
 		fmt.Println("3. Update Data")
 		fmt.Println("4. Hapus Data")
-		fmt.Println("5. Exit\n")
+		fmt.Println("5. Exit")
 		fmt.Print("choose >> : ")
 
 		fmt.Scan(&sc)
@@ -83,8 +83,8 @@ func main() {
 				}
 			}
 			nama = append(nama, id)
-			tiekt = append(tiekt, tiket)
-			code = append(code, kode)
+			array_tiket = append(array_tiket, tiket)
+			array_kode = append(array_kode, kode)
 
 			if kode == 1 {
 				harga = 25000
@@ -120,7 +120,7 @@ func main() {
 
 			for i := 0; i < len(nama); i++ {
 				fmt.Printf("| %-3d| %-10s| %-10d| %-7d| %-5d|\n",
-					(i + 1), nama[i], code[i], tiekt[i], total[i])
+					(i + 1), nama[i], array_kode[i], array_tiket[i], total[i])
 			}
 
 		case 3: //editing data
@@ -133,7 +133,7 @@ func main() {
 			}
 			for i := 0; i < len(nama); i++ {
 				fmt.Printf("| %-3d| %-10s| %-10d| %-7d| %-5d|\n",
-					(i + 1), nama[i], code[i], tiekt[i], total[i])
+					(i + 1), nama[i], array_kode[i], array_tiket[i], total[i])
 			}
 
 		case 4: //deleting data
