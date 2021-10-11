@@ -24,20 +24,21 @@ func main() {
 
 	for {
 
-		fmt.Println("BIOSKOP GOLANG")
-		fmt.Println("==============")
+		fmt.Print("\nMini Bioskop GOLANG")
+		fmt.Print(" Ver. 0.1\n")
+		fmt.Println("==========================")
 		fmt.Println("| Kode Film | Nama Film  |")
 		fmt.Println("| 1         |", film1, "  |")
 		fmt.Println("| 2         |", film2, "   |")
 		fmt.Println("| 3         |", film3, "    |")
 		fmt.Println()
 
-		fmt.Println("1. Buy")
-		fmt.Println("2. View")
-		fmt.Println("3. Update")
-		fmt.Println("4. Delete")
-		fmt.Println("5. Exit")
-		fmt.Println("choose >> ")
+		fmt.Println("1. Beli Tiket")
+		fmt.Println("2. Lihat Data")
+		fmt.Println("3. Update Data")
+		fmt.Println("4. Hapus Data")
+		fmt.Println("5. Exit\n")
+		fmt.Print("choose >> : ")
 
 		fmt.Scan(&sc)
 
@@ -48,31 +49,31 @@ func main() {
 				id      string
 				mail    string
 				kode    int
-				ticket  int
-				price   int
+				tiket   int
+				harga   int
 				bayar   int
 			)
 
 			for {
 				//ini tempat user input data diri
 				fmt.Println()
-				fmt.Println("Masukkan nama anda : ")
+				fmt.Print("Masukkan nama anda : ")
 				input.Scan()
 				id = input.Text()
-				fmt.Println("Masukkan kode film : ")
+				fmt.Print("Masukkan kode film : ")
 				fmt.Scan(&kode)
-				fmt.Println("Masukkan email anda : ")
+				fmt.Print("Masukkan email anda : ")
 				input.Scan()
 				mail = input.Text()
-				fmt.Println("Masukkan jumlah pembelian : ")
-				fmt.Scan(&ticket)
+				fmt.Print("Masukkan jumlah pembelian : ")
+				fmt.Scan(&tiket)
 				fmt.Println()
 				fmt.Println()
 
 				//validasi pembelian ke user. belom ditambahkan case jika summary salah
 				fmt.Println("\t Summary \t")
 				fmt.Println("==========================")
-				fmt.Println("Nama : ", id, "\nEmail : ", mail, "\nKode Film : ", kode, "\nJumlah Tiket : ", ticket)
+				fmt.Println("Nama : ", id, "\nEmail : ", mail, "\nKode Film : ", kode, "\nJumlah Tiket : ", tiket)
 
 				fmt.Print("Apakah inormasi di atas sudah benar? <y/n> ")
 				fmt.Scan(&recheck)
@@ -82,35 +83,35 @@ func main() {
 				}
 			}
 			nama = append(nama, id)
-			tiekt = append(tiekt, ticket)
+			tiekt = append(tiekt, tiket)
 			code = append(code, kode)
 
 			if kode == 1 {
-				price = 25000
+				harga = 25000
 			} else if kode == 2 {
-				price = 36000
+				harga = 36000
 			} else {
-				price = 30000
+				harga = 30000
 			}
 
-			jumlah := price * ticket
+			jumlah := harga * tiket
 			fmt.Println("Jumlah pembayaran : ", jumlah)
 			total = append(total, jumlah) // memasukkan jumlah pembayaran ke slice total pembayaran
 
-			fmt.Print("Masukkn nominal pembayaran : ")
+			fmt.Print("Masukan nominal pembayaran : ")
 			fmt.Scan(&bayar)
 			change := bayar - jumlah
 
 			if bayar >= jumlah {
-				fmt.Println("Kembali: ", change)
-				fmt.Println("Selamat menikmati tayangannya!")
+				fmt.Println("Kembali : ", change)
+				fmt.Println("\nSelamat menikmati tayangannya!")
 			} else {
 				fmt.Println("Pembayaran anda tidak dapat di proses.")
 			}
 
 		case 2: //viewing data
 			if cap(nama) == 0 {
-				fmt.Println("There is no data!")
+				fmt.Println("Data TIDAK Ditemukan!")
 			} else {
 				fmt.Println("========================================================")
 				fmt.Println("| No. | Nama        | Kode Film | Jumlah    | Price    |")
@@ -124,7 +125,7 @@ func main() {
 
 		case 3: //editing data
 			if cap(nama) == 0 {
-				fmt.Println("There is no data!")
+				fmt.Println("Data TIDAK Ditemukan!")
 			} else {
 				fmt.Println("========================================================")
 				fmt.Println("| No. | Nama        | Kode Film | Jumlah    | Price    |")
