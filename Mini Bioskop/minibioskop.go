@@ -54,7 +54,7 @@ func main() {
 			)
 
 			for {
-				//ini tempat user input data diri serta m
+				//ini tempat user input data diri
 				fmt.Println()
 				fmt.Println("Masukkan nama anda : ")
 				input.Scan()
