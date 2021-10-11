@@ -96,15 +96,19 @@ func main() {
 
 			jumlah := harga * tiket
 			fmt.Println("Jumlah pembayaran : ", jumlah)
-			total = append(total, jumlah) // memasukkan jumlah pembayaran ke slice total pembayaran
 
 			fmt.Print("Masukan nominal pembayaran : ")
 			fmt.Scan(&bayar)
 			change := bayar - jumlah
 
 			if bayar >= jumlah {
-				fmt.Println("Kembali : ", change)
-				fmt.Println("\nSelamat menikmati tayangannya!")
+				nama = append(nama, id)
+				tiekt = append(tiekt, ticket)
+				code = append(code, kode)
+				total = append(total, jumlah)
+
+				fmt.Println("Kembali: ", change)
+				fmt.Println("Selamat menikmati tayangannya!")
 			} else {
 				fmt.Println("Pembayaran anda tidak dapat di proses.")
 			}
@@ -119,6 +123,7 @@ func main() {
 			}
 
 			for i := 0; i < len(nama); i++ {
+
 				fmt.Printf("| %-3d| %-10s| %-10d| %-7d| %-5d|\n",
 					(i + 1), nama[i], array_kode[i], array_tiket[i], total[i])
 			}
@@ -134,12 +139,18 @@ func main() {
 			for i := 0; i < len(nama); i++ {
 				fmt.Printf("| %-3d| %-10s| %-10d| %-7d| %-5d|\n",
 					(i + 1), nama[i], array_kode[i], array_tiket[i], total[i])
+
 			}
 
 		case 4: //deleting data
 			fmt.Println("========================================================")
 			fmt.Println("| No. | Nama        | Kode Film | Jumlah    | Price    |")
 			fmt.Println("========================================================")
+
+			for i := 0; i < len(nama); i++ {
+				fmt.Printf("| %-4d| %-12s| %-10d| %-10d| %-9d|\n",
+					(i + 1), nama[i], array_kode[i], array_tiket[i], total[i])
+			}
 		}
 
 		if sc == 5 {
