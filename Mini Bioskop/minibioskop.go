@@ -81,9 +81,6 @@ func main() {
 					break
 				}
 			}
-			nama = append(nama, id)
-			tiekt = append(tiekt, ticket)
-			code = append(code, kode)
 
 			if kode == 1 {
 				price = 25000
@@ -95,15 +92,20 @@ func main() {
 
 			jumlah := price * ticket
 			fmt.Println("Jumlah pembayaran : ", jumlah)
-			total = append(total, jumlah) // memasukkan jumlah pembayaran ke slice total pembayaran
 
 			fmt.Print("Masukkn nominal pembayaran : ")
 			fmt.Scan(&bayar)
 			change := bayar - jumlah
 
 			if bayar >= jumlah {
+				nama = append(nama, id)
+				tiekt = append(tiekt, ticket)
+				code = append(code, kode)
+				total = append(total, jumlah)
+
 				fmt.Println("Kembali: ", change)
 				fmt.Println("Selamat menikmati tayangannya!")
+
 			} else {
 				fmt.Println("Pembayaran anda tidak dapat di proses.")
 			}
@@ -118,7 +120,7 @@ func main() {
 			}
 
 			for i := 0; i < len(nama); i++ {
-				fmt.Printf("| %-3d| %-10s| %-10d| %-7d| %-5d|\n",
+				fmt.Printf("| %-4d| %-12s| %-10d| %-10d| %-9d|\n",
 					(i + 1), nama[i], code[i], tiekt[i], total[i])
 			}
 
@@ -131,7 +133,7 @@ func main() {
 				fmt.Println("========================================================")
 			}
 			for i := 0; i < len(nama); i++ {
-				fmt.Printf("| %-3d| %-10s| %-10d| %-7d| %-5d|\n",
+				fmt.Printf("| %-4d| %-12s| %-10d| %-10d| %-9d|\n",
 					(i + 1), nama[i], code[i], tiekt[i], total[i])
 			}
 
@@ -139,6 +141,11 @@ func main() {
 			fmt.Println("========================================================")
 			fmt.Println("| No. | Nama        | Kode Film | Jumlah    | Price    |")
 			fmt.Println("========================================================")
+
+			for i := 0; i < len(nama); i++ {
+				fmt.Printf("| %-4d| %-12s| %-10d| %-10d| %-9d|\n",
+					(i + 1), nama[i], code[i], tiekt[i], total[i])
+			}
 		}
 
 		if sc == 5 {
